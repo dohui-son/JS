@@ -1,0 +1,228 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+    </head>
+    <body>
+        <script>
+            //JAVA SCRIPT short review 
+
+            alert('Hello World');  //javascript임- 경고창
+            console.log( 'Hello World' ); //콘솔에 뜸, 콘솔로그하기 귀찮으면 그냥 쓰면 됨
+            alert(1+1);
+            alert('1.1');
+            alert(1.2+1.3);
+            alert(6/2);
+            Math.pow(3,2); //3의 2승
+            Math.round(10.6); //10.6의 반올림
+            Math.ceil(10.2); //10.2 의 올림
+            Math.floor(10.6);//10.6 의 내림
+            Math.sqrt(9);    //9의 제곱근-->  3 출력
+            Math.random();  //0 에서 1.0사이의 랜덤 숫자
+            //정수인지 실수인지는 중요하지않고 이를 포괄적으로 number라고 한다.
+
+            //string
+            alert("coding everyday");
+            alert('coding everyday');
+
+            alert(typeof 1);  //출력 : number
+
+            alert('egoing\'s javascript'); //찐 작은따옴표 사용방법 역슬래쉬랑 작은 따옴표
+            alert("안녕하세요. \n손도희입니다.");
+            //문자와 문자 더하기
+            alert("coding "+"everyday");
+            alert("coding everyday ".length); //출력 : 16  
+            //----> space bar도 한칸으로 카운트됨
+
+            //변수의 선언 :    var 로 시작함, 
+            //var        : 생략가능-->유효범위에 영향을 미치기 때문에, 명확한 이해이전에는 var이라고 붙일것
+            //변수 이름은 특수문제 제외한 모든 문자로 시작
+            var a = 1;
+            console.log(a+1);
+            a++;
+            console.log('a는',a);
+            //*******세미콜론 생략가능, 세미콜론 생략시 줄바꿈을 명령의 끝으로 간주
+            var first = "coding";
+            alert(first+" everyday");
+            var a = 'coding', b = 'everyday';
+            console.log(a,b);
+
+            //비교
+            //#연산자란?  값에 대해서 어떤 작업을 컴퓨터에게 지시하기 위한 기호 ex. =는 대입연산자
+            alert(1==2); // 출력 : false
+            alert("one"=="two"); //false
+
+            //*********정확한 일치연산자인 === 와 ==는 다르다
+            alert('1'==1);  //true
+            alert('1'===1); //false   *********************
+            //************************==보다 ===을 쓸것!!!!!
+            console.log(null == undefined);//true;
+            console.log(null === undefined);//false
+            console.log(true == 1);        //true
+            console.log(true ===1);        //false
+            console.log(true == '1');      //true
+            console.log(true === '1');     //false
+
+            console.log(0 === -0); //true  ****
+            console.log(NaN === NaN); //false  ****
+            console.log(0 === NaN);   //false  ****
+            // NaN은 0/0과 같은 연산의 결과로 만들어지는 특수한 데이터형, 숫자가 아니라는 뜻포함
+
+            //    !=는 ==의 반대결과를 보여줌, ( !==는 ===의 역 이다 )
+            
+            console.log(10>2); //true
+            console.log(10>10);   //false
+            console.log(10<NaN);  //false
+
+            if(false) console.log("the if part");
+            else console.log("the else part");
+
+            //*****************
+            if(false) console.log( 1 );
+            else if( true ) console.log( 2 );
+            else if( true ) console.log( 3 );
+            else console.log( 4 );
+            //------------------->출력 2
+
+            if(false) console.log( 1 );
+            else if(false) console.log( 2 );
+            else if(true)  console.log( 3 );
+            else console.log(4);
+            //------------------->출력 3
+
+            if(false) console.log( 1 );
+            else if(false) console.log( 2 );
+            else if(flase)  console.log( 3 );
+            else console.log(4);
+            //------------------->출력 4
+
+            //Example
+            id = prompt('아이디를 입력해주세요. ');
+            password = prompt('비밀번호를 입력해주세요.');
+            if(id === 'theID' && password === '12345') alert("인증 성공. ");
+            else alert("인증 실패. ");
+            //java script에서도 0은 false, 1은 true
+
+            //******DATA TYPE CONSIDERED AS " FALSE "
+            if(!'') console.log('빈 문자열');                 //1
+            if(!undefined) console.log('undefined');         //2
+            var a_var;
+            if(!a_var) console.log('값이 할당되지 않은 변수') //3
+            if(!null)  console.log('null')                   //4
+            if(!NaN)   console.log('NaN')                    //5
+
+        
+            //document.write('내용'); 는 자바스크립트로 웹페이지에 텍스트 출력함, 웹브라우저에서만 동작함
+            //node.js 콘솔 같은 환경에서는 console.log같은 매소드를 대신 사용
+            document.write('coding everyday <br />');
+            
+
+
+            // 반복문----------------------------------------------------------------------
+            //********
+            //(1) while
+            // loop 자바스크립트에서도 유효했었음 
+            //while(true)document.write('endless loop <br />');
+            //저장해야하는 작업있으면 다 정리한 후 이 명령(루프) 실행해야함. 
+            //웹브라우저는 무한 반복을 허용치 않아서, 얼마후 스크립트를 종료할 것인가 물어볼 것임.
+            while(false)document.write('nothing happens <br />'); 
+            // while문 안의 것은 실행안됨. 조건이 true여야 중괄호{}안의 내용 반복 실행
+
+            //(2) break , continue
+            for(var i=0; i<7; i++){
+
+                if(i==3)continue;
+
+                document.write("JUST NOW the i is  <br />"+i );
+                if(i == 6)
+                { 
+                    document.write("\n just before the BREAK  <br />"+i );
+                    break;}
+            }
+            //****String(var) : 데이터타입문자로 형변환 
+            for(var i = 0; i < 3 ; i++){
+                for(var j= i + 1; j <7 ; j++)
+                document.write(String(i) + String(j) + "<br />")
+            }
+
+
+            //FUNCTION------------------------------------------------------------
+            function function_name() {
+                var i = 0 ;
+                while(i < 10){
+                    document.write(i);
+                    i++;
+                }
+            }
+            function_name(); //함수 호출 결과 : 0123456789
+            
+            function get_no(){ return 'the return val is returned'; }
+            alert( get_no );
+
+            function get_no2(){ 
+                return 'the return val is returned'; //여기서 함수 종료
+                return 'this is not returned';
+                return 'this is not returned';
+                }
+
+            function stoi(num){ return String(num); }
+            stoi(8);
+            
+            console.log("8 + 8 is  by stoi : " + stoi(8)+stoi(8) );
+            console.log( typeof stoi(8) );
+
+            //ARRAY--------------------------------------------------------------********
+            var arr_mem = ['m1','m2','m3'];
+            alert(arr_mem[2]);
+
+            function get_mem(){return ['mem1','mem2','mem3']} //***
+            var members = get_mem();
+            document.write(members[0]);
+            document.write(members[2]);
+
+            function get_str_mem(){ return ['str1_arr','str2_arr','str3_arr']; }
+            var str_mem = get_str_mem();
+            console.log( str_mem.length ); // the len of arr
+            console.log( str_mem[2].toUpperCase() ); 
+            for(var i = 0 ; i < str_mem.length ; i++ )
+            {
+                document.write( members[i].toLowerCase() );
+                document.write('<br />');
+            }
+
+            str_mem.push('new_mem1');
+            alert(str_mem);
+
+            str_mem = str_mem.concat(['new2_concat','new3_concat']);
+            alert(str_mem);
+
+            str_mem.unshift('put_this_in_0idx___by_unshift');
+            alert(str_mem);
+
+            str_mem.splice(2, 0, 'mem2_new_substitution_mem___by_splice');
+            alert(str_mem);
+            //splice는 첫번째 인자에 해당하는 배열의 idx의 원소부터 
+            //두번째 인자에 해당하는 원소의 개수만큼의 값을 배열로부터 제거한 후 리턴(리턴값 콘솔에 출력)
+            //그리고 세번째 인자에서 전달된 인자들을 첫번째 인자의 원소 뒤에 추가
+            //출력 : put_this_in_0idx__by_unshift, str1_arr, mem2_new_subtitution_mem___by_splic, str2_arr, str3_arr, new_mem1, new2_concat, new3_concat
+
+            var alphabet_arr = ['b', 'c', 'd', 'e'];
+            alphabet_arr.unshift('a');
+            alert(alphabet_arr); //출력 : a,b,c,d,e
+            alphabet_arr.splice(2, 0,'B');
+            alert(alphabet_arr); //출력 : a,b,B,c,d,e
+            alphabet_arr.splice(2, 1,'C'); //배열로부터 제거되어, 리턴된 B가 콘솔에 출력됨
+            console.log( alphabet_arr ); 
+
+            alphabet_arr.shift(); // idx 0의 원소 제거
+            console.log( alphabet_arr ); 
+            alphabet_arr.pop(); //끝 원소 제거
+            console.log( alphabet_arr ); 
+
+            alphabet_arr.reverse();  //역순 정렬
+            console.log( alphabet_arr ); 
+            alphabet_arr.sort();     //정렬
+            console.log( alphabet_arr ); 
+
+        </script>
+    </body>
+</html>
