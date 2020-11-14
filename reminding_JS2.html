@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Reminding the JavaScript </title>
+    </head>
+    <body>
+        <ul>
+        <script type="text/JavaScript">
+            //1.    OBJECT 객체
+
+            //array     the index is integer
+            //object    the index(key) could be "the data user want"
+            //예시 {key : val, key: val}
+            var grade = {'stu_1': 10, 'stu_2': 6, 'stu_3': 80};
+            
+            var grade_2 = {};
+            grade_2['stu_1'] = 10;
+            grade_2['stu_2'] = 20;
+            grade_2['stu_3'] = 30;
+
+            var grade_3 = new Object();
+            grade_3['stu_1'] = 100;
+            grade_3['stu_2'] = 200;
+            grade_3['stu_3'] = 300;
+
+
+            console.log( grade['stu_1'] );
+            console.log( grade['stu' + '_1'] );
+            console.log( grade.stu_1 );
+
+            var grade_4 = {'st1' : 1, 'st2' : 2, 'st3' : 3}
+            for( key in grade_4 ) document.write( "key : " + key + " value : " + grade_4[key]+ "<br/><br/>");
+
+            var grade_5 = {'st1' : 100, 'st2' : 200, 'st3' : 300}
+            for( name_randomly in grade_5 ) document.write( "key : " + name_randomly + " value : " + grade_5[name_randomly]+ "<br/><br/>");
+
+
+
+            var grade_ul = {'k_1': 'val_1', 'k_2': 'val_2', 'k_3': 'val_3' }
+            for (key in grade_ul) document.write("<li> key :  "+ key + "  value : " + grade_ul[key] + "</li>")
+            
+            
+            //객체에 객체랑 함수 모두 담을 수 있음
+            var ob_and_func = {
+                'list' : {'st1' : 100, 'st2' : 200, 'st3' : 300},
+                'list_2' : {'st1' : 1, 'st2' : 2, 'st3' : 3},
+                'show_list' : function () {
+                    for (var students in this.list){ document.write(students + '  :  '+ this.list[students]+"<br />");}
+                    }
+            }
+            ob_and_func.show_list();
+
+
+            //2.    MODULE 모듈
+            // : 웹브라우저( 자바스트립트 대표적 호스트 환경 )에서 로직을 모듈화하는 방법
+
+            //(1) 코드 재활용성 향상
+            //(2) 코드 수정시 필요한 로직을 빠르게 찾음 (관리가 쉽다)
+            //(3) 메모리 낭비 최소화
+            //(4) 브라우저 : 한번 다운된 모듈은 웹브라우저에 의해 저장되기에, 동일한 로직을 로드시 시간과 네트워크 트래픽을 절약 가능
+
+            //순수한 자바스크립트에서는 모듈 개념 없음. 하지만 자바스크립트가 구동되는 호스트 환경에 따라 서로 다른 모듈화 방법 제공됨.
+            
+            //***호스트 환경  ( 자바스크립트가 구동되는 환경 )
+            // 자바스크립트는 브라우저를 위한 언어였지만, 탈웹화. 
+            // ex) node.js 는 서버측에서 실행되는 자바스크립트(구동환경은 서버측 환경)
+            //     Google Apps Script 도 자바스크립트지만 google apps script가 동작하는 환경은 구글 스프레드 시트
+            //언어와 언어가 구동되는 환경 구분의 필요성
+
+            
+        </script>
+        </ul>
+    </body>
+</html>
