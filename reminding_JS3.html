@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8"/>
+        <script src="remind_m.js"> </script>
+        
+    </head>
+    <body>
+        <script>
+        //<script type="text/JavaScript">
+        //HTML 과 JavaScript구분 역할, 
+        //HTML의 태그인 script태그 (이 태그 안쪽에 위치하는 컨텐츠들은 브라우저에 의해 JavaScript로 인식됨 )
+        //<script src="remind_m.js"> </스크립트>          컨텐츠 대신 src속성이 있음, 브라우저가 src속성있는 파일을 다운해 실행 
+        //따라서 remind_module()함수 실행가능
+
+            alert( remind_module() );
+
+
+            //  2.    MODULE 모듈
+            // : 웹브라우저( 자바스트립트 대표적 호스트 환경 )에서 로직을 모듈화하는 방법
+
+            //(1) 코드 재활용성 향상
+            //(2) 코드 수정시 필요한 로직을 빠르게 찾음 (관리가 쉽다)
+            //(3) 메모리 낭비 최소화
+            //(4) 브라우저 : 한번 다운된 모듈은 웹브라우저에 의해 저장되기에, 동일한 로직을 로드시 시간과 네트워크 트래픽을 절약 가능
+
+            //순수한 자바스크립트에서는 모듈 개념 없음. 하지만 자바스크립트가 구동되는 호스트 환경에 따라 서로 다른 모듈화 방법 제공됨.
+            
+            //***호스트 환경  ( 자바스크립트가 구동되는 환경 )
+            // 자바스크립트는 브라우저를 위한 언어였지만, 탈웹화. 
+            // ex) node.js 는 서버측에서 실행되는 자바스크립트(구동환경은 서버측 환경)
+            //     Google Apps Script 도 자바스크립트지만 google apps script가 동작하는 환경은 구글 스프레드 시트
+            //언어와 언어가 구동되는 환경 구분의 필요성
+
+            /*
+            <script type="text/JavaScript">
+            //***모듈을 로드하는 방법은 호스트환경에 따라 달라짐
+            //ex
+            var round = require('./node.oval.js');
+            console.log( 'The area of circle (radius 4)  : ' + round.area(4) );
+            </스크립트>
+            */
+
+
+            //  3.    REGULAR EXPRESSION
+            //정규표현식 :  펄, 자바스크립트, 루비, Tcl처럼 문법에 내장되어 있는 
+            //반면 닷넷 언어, 자바, 파이썬, POSIX C, C++ (C++11 이후)에서는 표준 라이브러리를 통해 제공
+            
+    
+            //(1)방법1 -- 정규표현식 리터럴 예시 : a와 "a뒤의 한 문자를 찾아내( . )"는 정규표현식 
+            var pattern_find_a =/a./  
+            //(2)방법2 -- 정규표현식 객체 생성자 : b 찾아내는 정규표현식  (윗라인과 차이점 존재)
+            var pattern_find_b =new RegExp('b');    //RegularExpression
+
+
+            //          RegExp.exec();
+            console.log(pattern_find_b.exec('aaaaabbcd'));  //문자열 a를 값으로 하는 배열을 리턴
+            // output      ["b", index: 5, input: "aaaaabbcd", groups: undefined]
+            console.log(pattern_find_b.exec('aaaaaaaaaavvvvvvvv'));
+            // output       null
+            console.log(pattern_find_a.exec('vdfdgax'));
+            // output      ["ax", index: 5, input: "vdfdgax", groups: undefined]
+
+            //          RegExp.test();
+            console.log(pattern_find_b.test('dfdgdg'));         //false가 return
+            console.log(pattern_find_b.test('b__dfdgdg'));      //true가 return
+
+            //          String.match();
+            var pattern =/a/  
+            console.log('adkvkpoepolkv'.match(pattern));        // ["a"]
+            console.log('bcdefgdfffddg'.match(pattern));        // null
+
+            //          String.replace()
+            console.log('abcdef'.replace(pattern, 'A'));  // Abcdef
+
+
+
+            //옵션에 따라 정규표현식은 검출되는 데이터가 달라진다.
+            //OPTIONS of Regular Expression - i
+            //i 붙이면 대소문자를 구분 안함.
+            var i_x = /a/;
+            console.log("Abcde".match(i_x));             // null
+            var i_o = /a/i;
+            console.log("Abcde".match(i_o));             // ["A"];
+
+            //OPTIONS of Regular Expression - g
+            //g 붙이면 검색된 모든 결과 리턴
+            var x_g = /a/;
+            console.log("abcdea".match(x_g));
+            //["a", index: 0, input: "abcdea", groups: undefined]
+            var o_g = /a/g;
+            console.log("abcdea".match(o_g));
+            //["a", "a"]
+
+
+            //REUSE PATTERN and REVERSE
+            var patt = /(\w+)\s(\w+)/;
+            var str = "coding everyday";
+            var result = str.replace(patt, "$2, $1");
+            console.log(result);
+
+
+
+            //치환   : 아래 코드는 본문 중의 URL을 링크 html 태그로 교체한다. 
+
+            var urlPattern = /\b(?:https?):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*/gim;
+            var content = '손도희 깃git : https://github.com/dohui-son?tab=repositories 입니다. ';
+            var result = content.replace(urlPattern, function(url){
+                return '<a href="'+url+'">'+'</a>';
+            });
+            console.log(result);
+
+            //손도희 깃git : <a href="https://github.com/dohui-son?tab=repositories"></a> 입니다.
+
+
+        
+
+
+
+
+
+
+
+            
+
+        </script>
+
+
+    </body>
+</html>
